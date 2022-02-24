@@ -1,7 +1,15 @@
+;; -*- lexical-binding: t -*-
 ;; don't show startup screen
 (setq inhibit-startup-message t)
 ;; don't make backup files
 (setq make-backup-files nil)
+
+;; unbind
+(global-unset-key (kbd "C-x C-z"))
+(global-unset-key (kbd "C-z"))
+
+(setq enable-recursive-minibuffers t)
+(delete-selection-mode +1)
 
 ;; display line numbers globally
 (global-display-line-numbers-mode)
@@ -31,7 +39,7 @@
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
 
-(package-initialize)
+;;(package-initialize)
 
 (use-package magit
       :ensure t)
@@ -123,7 +131,7 @@
   ("M-y" . consult-yank-from-kill-ring)
   ("C-x r b" . consult-bookmark)
   ("C-x r g" . consult-ripgrep)
-  ("C-s" . consult-line))
+  ("C-x s" . consult-line))
 
 (use-package orderless
   :ensure t
@@ -135,6 +143,18 @@
   :ensure t
   :config
   (rg-enable-default-bindings))
+
+(use-package magit
+  :ensure t)
+
+(use-package org
+  :ensure t)
+
+(setq
+ org-startup-indented t
+ org-startup-folded t
+ org-directory "~/org")
+(global-set-key (kbd "C-c c") #'org-capture)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

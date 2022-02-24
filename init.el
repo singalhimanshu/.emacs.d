@@ -156,6 +156,19 @@
  org-directory "~/org")
 (global-set-key (kbd "C-c c") #'org-capture)
 
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "~/org/notes"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+	 ("C-c n f" . org-roam-node-find)
+	 ("C-c n g" . org-roam-graph)
+	 ("C-c n i" . org-roam-node-insert))
+  :config
+  (org-roam-db-autosync-mode)
+  (require 'org-roam-protocol))
+;;(set org-roam-v2-ack t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
